@@ -1,0 +1,55 @@
+require_relative '../node_modules/react-native/scripts/react_native_pods'
+require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
+
+platform :ios, '10.0'
+
+target 'AwesomeProject' do
+  config = use_native_modules!
+
+  use_react_native!(:path => config["reactNativePath"])
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
+  pod 'react-native-paystack', :path => '../node_modules/react-native-paystack'
+#paystack starts here
+  target 'AwesomeProjectTests' do
+    inherit! :complete
+    # Pods for testing
+
+  # Pods for _YOUR_PROJECT_TARGET_
+  pod 'React', :path => '../node_modules/react-native', :subspecs => [
+    'Core',
+    'CxxBridge',
+    'DevSupport',
+    'RCTText',
+    'RCTImage',
+    'RCTNetwork',
+    'RCTWebSocket',
+    'RCTSettings',
+    'RCTAnimation',
+    'RCTLinkingIOS',
+    # Add any other subspecs you want to use in your project
+    # Remove any subspecs you don't want to use in your project
+  ]
+
+  pod "yoga", :path => "../node_modules/react-native/ReactCommon/yoga"
+  pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
+  pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
+  pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  # This should already be auto-added for you, if not add the line below
+  #pod 'react-native-paystack', :path => '../node_modules/react-native-paystack'
+
+  end
+  #paystack ends here
+
+  # Enables Flipper.
+  #
+  # Note that if you have use_frameworks! enabled, Flipper will not work and
+  # you should disable these next few lines.
+  use_flipper!
+  post_install do |installer|
+    flipper_post_install(installer)
+  end
+end

@@ -1,0 +1,8 @@
+{
+  "name": "AwesomeProject",
+  "displayName": "AwesomeProject",
+
+  "rnpm": {
+    "assets": ["./assests/fonts/"]
+  }
+}
